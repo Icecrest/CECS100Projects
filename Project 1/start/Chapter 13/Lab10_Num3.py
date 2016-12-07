@@ -2,7 +2,7 @@
 
 file = open('Message', 'r+')
 file.seek(0)
-original = file.readlines().pop(0)
+original = file.readlines().pop(0).lower()
 message = []
 message_text = ""
 is_readable = True
@@ -78,6 +78,8 @@ def caesar():
     global message
     global message_text
     global is_readable
+    message.clear()
+    message_text = ""
     letter_shift = {}
     letter_set = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                   'u', 'v', 'w', 'x', 'y', 'z']
@@ -85,141 +87,151 @@ def caesar():
     place = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
              'u', 'v', 'w', 'x', 'y', 'z']
     a_equals = input("What letter do you want to shift 'a' to?")
-    for i in range(0, letter_set.index(a_equals)):
+    for i in range(letter_set.index(a_equals)):
         placeholder.append(letter_set[i])
-        del letter_set[i]
+    for i in placeholder:
+        letter_set.remove(i)
     letter_set.extend(placeholder)
-    for item in place:
-        letter_shift[item] = letter_set[place.index(item)]
-    print(letter_shift)
-    """for letter in original:
+    for item in range(26):
+        letter_shift[item] = letter_set[item]
+    for letter in original:
         if letter == "a":
-            message.append(letter_shift.pop(0))
+            message.append(letter_shift.get(0))
         elif letter == "b":
-            message.append(letter_shift.pop(1))
+            message.append(letter_shift.get(1))
         elif letter == "c":
-            message.append(letter_shift.pop(2))
+            message.append(letter_shift.get(2))
         elif letter == "d":
-            message.append(letter_shift.pop(3))
+            message.append(letter_shift.get(3))
         elif letter == "e":
-            message.append(letter_shift.pop(4))
+            message.append(letter_shift.get(4))
         elif letter == "f":
-            message.append(letter_shift.pop(5))
+            message.append(letter_shift.get(5))
         elif letter == "g":
-            message.append(letter_shift.pop(6))
+            message.append(letter_shift.get(6))
         elif letter == "h":
-            message.append(letter_shift.pop(7))
+            message.append(letter_shift.get(7))
         elif letter == "i":
-            message.append(letter_shift.pop(8))
+            message.append(letter_shift.get(8))
         elif letter == "j":
-            message.append(letter_shift.pop(9))
+            message.append(letter_shift.get(9))
         elif letter == "k":
-            message.append(letter_shift.pop(10))
+            message.append(letter_shift.get(10))
         elif letter == "l":
-            message.append(letter_shift.pop(11))
+            message.append(letter_shift.get(11))
         elif letter == "m":
-            message.append(letter_shift.pop(12))
+            message.append(letter_shift.get(12))
         elif letter == "n":
-            message.append(letter_shift.pop(13))
+            message.append(letter_shift.get(13))
         elif letter == "o":
-            message.append(letter_shift.pop(14))
+            message.append(letter_shift.get(14))
         elif letter == "p":
-            message.append(letter_shift.pop(15))
+            message.append(letter_shift.get(15))
         elif letter == "q":
-            message.append(letter_shift.pop(16))
+            message.append(letter_shift.get(16))
         elif letter == "r":
-            message.append(letter_shift.pop(17))
+            message.append(letter_shift.get(17))
         elif letter == "s":
-            message.append(letter_shift.pop(18))
+            message.append(letter_shift.get(18))
         elif letter == "t":
-            message.append(letter_shift.pop(19))
+            message.append(letter_shift.get(19))
         elif letter == "u":
-            message.append(letter_shift.pop(20))
+            message.append(letter_shift.get(20))
         elif letter == "v":
-            message.append(letter_shift.pop(21))
+            message.append(letter_shift.get(21))
         elif letter == "w":
-            message.append(letter_shift.pop(22))
+            message.append(letter_shift.get(22))
         elif letter == "x":
-            message.append(letter_shift.pop(23))
+            message.append(letter_shift.get(23))
         elif letter == "y":
-            message.append(letter_shift.pop(24))
+            message.append(letter_shift.get(24))
         elif letter == "z":
-            message.append(letter_shift.pop(25))
+            message.append(letter_shift.get(25))
         elif letter == " ":
             message.append(" ")
-        """
     message_text = message_text.join(message)
     is_readable = True
     print("*\nCaesar Shift Encrypted\n*")
 
 
 def de_caesar():
-    global message
+    global original
     global message_text
     global is_readable
-    letter_shift = {
-        'a': 'a', 'b': 'b', 'c': 'c', 'd': 'd', 'e': 'e', 'f': 'f', 'g': 'g', 'h': 'h', 'i': 'i', 'j': 'j',
-        'k': 'k', 'l': 'l', 'm': 'm', 'n': 'n', 'o': 'o', 'p': 'p', 'q': 'q', 'r': 'r', 's': 's', 't': 't',
-        'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x', 'y': 'y', 'z': 'z'}
+    global message
+    local_message = []
+    message_text = ""
+    letter_shift = {}
+    letter_set = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                  'u', 'v', 'w', 'x', 'y', 'z']
     placeholder = []
-    a_equals = input("What letter does 'a' shift to?")
-    for i in range(0, letter_shift.index(a_equals)):
-        placeholder.append(letter_shift.pop(i))
-    for element in placeholder:
-        letter_shift.append(element)
-    for letter in message_text:
+    place = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+             'u', 'v', 'w', 'x', 'y', 'z']
+    a_equals = input("What letter did 'a' shift to?")
+    for i in range(26-letter_set.index(a_equals)):
+        placeholder.append(letter_set[i])
+    for i in placeholder:
+        letter_set.remove(i)
+    letter_set.extend(placeholder)
+    for item in range(26):
+        letter_shift[item] = letter_set[item]
+    print(letter_shift)
+    for letter in message:
         if letter == "a":
-            message.append(letter_shift.pop(0))
+            local_message.append(letter_shift.get(0))
         elif letter == "b":
-            message.append(letter_shift.pop(1))
+            local_message.append(letter_shift.get(1))
         elif letter == "c":
-            message.append(letter_shift.pop(2))
+            local_message.append(letter_shift.get(2))
         elif letter == "d":
-            message.append(letter_shift.pop(3))
+            local_message.append(letter_shift.get(3))
         elif letter == "e":
-            message.append(letter_shift.pop(4))
+            local_message.append(letter_shift.get(4))
         elif letter == "f":
-            message.append(letter_shift.pop(5))
+            local_message.append(letter_shift.get(5))
         elif letter == "g":
-            message.append(letter_shift.pop(6))
+            local_message.append(letter_shift.get(6))
         elif letter == "h":
-            message.append(letter_shift.pop(7))
+            local_message.append(letter_shift.get(7))
         elif letter == "i":
-            message.append(letter_shift.pop(8))
+            local_message.append(letter_shift.get(8))
         elif letter == "j":
-            message.append(letter_shift.pop(9))
+            local_message.append(letter_shift.get(9))
         elif letter == "k":
-            message.append(letter_shift.pop(10))
+            local_message.append(letter_shift.get(10))
         elif letter == "l":
-            message.append(letter_shift.pop(11))
+            local_message.append(letter_shift.get(11))
         elif letter == "m":
-            message.append(letter_shift.pop(12))
+            local_message.append(letter_shift.get(12))
         elif letter == "n":
-            message.append(letter_shift.pop(13))
+            local_message.append(letter_shift.get(13))
         elif letter == "o":
-            message.append(letter_shift.pop(14))
+            local_message.append(letter_shift.get(14))
         elif letter == "p":
-            message.append(letter_shift.pop(15))
+            local_message.append(letter_shift.get(15))
         elif letter == "q":
-            message.append(letter_shift.pop(16))
+            local_message.append(letter_shift.get(16))
         elif letter == "r":
-            message.append(letter_shift.pop(17))
+            local_message.append(letter_shift.get(17))
         elif letter == "s":
-            message.append(letter_shift.pop(18))
+            local_message.append(letter_shift.get(18))
         elif letter == "t":
-            message.append(letter_shift.pop(19))
+            local_message.append(letter_shift.get(19))
         elif letter == "u":
-            message.append(letter_shift.pop(20))
+            local_message.append(letter_shift.get(20))
         elif letter == "v":
-            message.append(letter_shift.pop(21))
+            local_message.append(letter_shift.get(21))
         elif letter == "w":
-            message.append(letter_shift.pop(22))
+            local_message.append(letter_shift.get(22))
         elif letter == "x":
-            message.append(letter_shift.pop(23))
+            local_message.append(letter_shift.get(23))
         elif letter == "y":
-            message.append(letter_shift.pop(24))
+            local_message.append(letter_shift.get(24))
         elif letter == "z":
-            message.append(letter_shift.pop(25))
+            local_message.append(letter_shift.get(25))
+        elif letter == " ":
+            local_message.append(" ")
+    message = local_message
     message_text = message_text.join(message)
     is_readable = True
     print("*\nCaesar Shift Decrypted\n*")
