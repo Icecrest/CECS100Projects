@@ -1,4 +1,4 @@
-"""Cipher Encryptor and Decrypter"""
+"""Cipher Encrypter and Decrypter"""
 
 file = open('Message', 'r+')
 file.seek(0)
