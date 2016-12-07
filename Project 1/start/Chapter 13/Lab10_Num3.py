@@ -2,13 +2,18 @@
 
 file = open('Message', 'r+')
 file.seek(0)
-original = file.readlines().pop(0).lower()
+if not file.readlines():
+    original = ""
+    print("\n~~~~~~~~~~~ NO TEXT TO USE ~~~~~~~~~~~\n\n")
+else:
+    original = file.readline(0).lower()
+file.close()
 message = []
 message_text = ""
 is_readable = True
 
 
-# Encrypt
+# Encrypt - Mark Gerges
 def encrypt(type):
     if type == "caesar":
         caesar()
@@ -16,7 +21,7 @@ def encrypt(type):
         tree()
 
 
-# Decrypt
+# Decrypt - Toby Johnson
 def decrypt(type):
     if type == "caesar":
         de_caesar()
@@ -24,20 +29,22 @@ def decrypt(type):
         de_tree()
 
 
-# Cipher Selection
+# Cipher Selection - Anfernee Abad
 def select():
     master = True
     while master:
         run = True
-        selection = input("What's poppin Jimbo?\n- Encrypt\n- Decrypt\n- Display\n- Quit Program")
+        selection = input("What's poppin Jimbo?\n- Encrypt\n- Decrypt\n- Display\n- Modify\n- Quit Program\n")
         if selection == "encrypt":
             while run:
-                selection = input("What's poppin Jimbo?\n- Caesar\n- Tree\n- Display Text\n- Quit")
+                selection = input("What's poppin Jimbo?\n- Caesar\n- Tree\n- Display Text\n- Return\n- Quit\n")
                 if selection == "tree" or selection == "caesar":
                     encrypt(selection)
                     run = False
                 elif selection == "display":
                     display()
+                    run = False
+                elif selection == "return":
                     run = False
                 elif selection == "quit":
                     return 0
@@ -45,12 +52,14 @@ def select():
                     print("Invalid input, please try again.\n*\n*")
         elif selection == "decrypt":
             while run:
-                selection = input("What's poppin Jimbo?\n- Caesar\n- Tree\n- Display Text\n- Quit")
+                selection = input("What's poppin Jimbo?\n- Caesar\n- Tree\n- Display Text\n- Return\n- Quit\n")
                 if selection == "tree" or selection == "caesar":
                     decrypt(selection)
                     run = False
                 elif selection == "display":
                     display()
+                    run = False
+                elif selection == "return":
                     run = False
                 elif selection == "quit":
                     return 0
@@ -58,6 +67,8 @@ def select():
                     print("Invalid input, please try again.\n*\n*")
         elif selection == "display":
             display()
+        elif selection == "modify":
+            mod()
         elif selection == "quit":
             return 0
         else:
@@ -71,7 +82,7 @@ def display():
         print("There is no text to display yet")
 
 
-# Caesar Shift Creator -
+# Caesar Shift Creator - Sean Curley
 def caesar():
     global original
     global message
@@ -85,7 +96,7 @@ def caesar():
     placeholder = []
     place = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
              'u', 'v', 'w', 'x', 'y', 'z']
-    a_equals = input("What letter do you want to shift 'a' to?")
+    a_equals = input("What letter do you want to shift 'a' to?\n")
     for i in range(letter_set.index(a_equals)):
         placeholder.append(letter_set[i])
     for i in placeholder:
@@ -152,7 +163,7 @@ def caesar():
     is_readable = True
     print("*\nCaesar Shift Encrypted\n*")
 
-# Caesar Decryptor
+# Caesar Decryptor - Sean Curley
 def de_caesar():
     global original
     global message_text
@@ -166,7 +177,7 @@ def de_caesar():
     placeholder = []
     place = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
              'u', 'v', 'w', 'x', 'y', 'z']
-    a_equals = input("What letter did 'a' shift to?")
+    a_equals = input("What letter did 'a' shift to?\n")
     for i in range(26-letter_set.index(a_equals)):
         placeholder.append(letter_set[i])
     for i in placeholder:
@@ -174,7 +185,6 @@ def de_caesar():
     letter_set.extend(placeholder)
     for item in range(26):
         letter_shift[item] = letter_set[item]
-    print(letter_shift)
     for letter in message:
         if letter == "a":
             local_message.append(letter_shift.get(0))
@@ -236,7 +246,7 @@ def de_caesar():
     print("*\nCaesar Shift Decrypted\n*")
 
 
-# Tree Creator - Sean/Anfernee
+# Tree Creator - Anfernee Abad
 def tree():
     global original
     global message
@@ -303,7 +313,7 @@ def tree():
     is_readable = False
 
 
-# Tree Decryptor - Sean
+# Tree Decryptor - Anfernee Abad
 def de_tree():
     global message
     global message_text
@@ -370,6 +380,30 @@ def de_tree():
     is_readable = True
 
 
+# File Modifier - Toby Johnson
+def mod():
+    file = open("Message", "r+")
+    global original
+    run = True
+    while run:
+        sel = input("What would you like to do with the file?\n- Clear\n- Write\n- Return\n")
+        if sel == "clear":
+            file.seek(0)
+            file.truncate()
+            print("*\nFile Cleared\n*")
+        elif sel == "write":
+            temp = input("What would you like to write to the file?\n")
+            file.write(temp)
+            print("*\nFile Writtem\n*")
+        elif sel == "return":
+            original = file.readline(0).lower()
+            file.close()
+            return 1
+        else:
+            print("Invalid input, please try again.\n*\n*")
+
+
+# Main Function - Mark Gerges
 def main():
     check = 1
     while check:
