@@ -65,9 +65,8 @@ def select():
 
 # Display file text
 def display():
-    if not message_text == "":
-        if is_readable:
-            print(message_text)
+    if not message_text == "" and is_readable:
+        print(message_text)
     else:
         print("There is no text to display yet")
 
@@ -153,7 +152,7 @@ def caesar():
     is_readable = True
     print("*\nCaesar Shift Encrypted\n*")
 
-
+# Caesar Decryptor
 def de_caesar():
     global original
     global message_text
@@ -237,7 +236,7 @@ def de_caesar():
     print("*\nCaesar Shift Decrypted\n*")
 
 
-# Claw Creator - Sean/Anfernee
+# Tree Creator - Sean/Anfernee
 def tree():
     global original
     global message
@@ -304,7 +303,7 @@ def tree():
     is_readable = False
 
 
-# Claw Decryptor - Sean
+# Tree Decryptor - Sean
 def de_tree():
     global message
     global message_text
