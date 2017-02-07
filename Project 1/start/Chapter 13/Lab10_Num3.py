@@ -6,7 +6,8 @@ if not file.readlines():
     original = ""
     print("\n~~~~~~~~~~~ NO TEXT TO USE ~~~~~~~~~~~\n\n")
 else:
-    original = file.readline(0).lower()
+    file.seek(0)
+    original = file.readline()
 file.close()
 message = []
 message_text = ""
@@ -105,60 +106,60 @@ def caesar():
     for item in range(26):
         letter_shift[item] = letter_set[item]
     for letter in original:
-        if letter == "a":
+        if letter == 'a':
             message.append(letter_shift.get(0))
-        elif letter == "b":
+        elif letter == 'b':
             message.append(letter_shift.get(1))
-        elif letter == "c":
+        elif letter == 'c':
             message.append(letter_shift.get(2))
-        elif letter == "d":
+        elif letter == 'd':
             message.append(letter_shift.get(3))
-        elif letter == "e":
+        elif letter == 'e':
             message.append(letter_shift.get(4))
-        elif letter == "f":
+        elif letter == 'f':
             message.append(letter_shift.get(5))
-        elif letter == "g":
+        elif letter == 'g':
             message.append(letter_shift.get(6))
-        elif letter == "h":
+        elif letter == 'h':
             message.append(letter_shift.get(7))
-        elif letter == "i":
+        elif letter == 'i':
             message.append(letter_shift.get(8))
-        elif letter == "j":
+        elif letter == 'j':
             message.append(letter_shift.get(9))
-        elif letter == "k":
+        elif letter == 'k':
             message.append(letter_shift.get(10))
-        elif letter == "l":
+        elif letter == 'l':
             message.append(letter_shift.get(11))
-        elif letter == "m":
+        elif letter == 'm':
             message.append(letter_shift.get(12))
-        elif letter == "n":
+        elif letter == 'n':
             message.append(letter_shift.get(13))
-        elif letter == "o":
+        elif letter == 'o':
             message.append(letter_shift.get(14))
-        elif letter == "p":
+        elif letter == 'p':
             message.append(letter_shift.get(15))
-        elif letter == "q":
+        elif letter == 'q':
             message.append(letter_shift.get(16))
-        elif letter == "r":
+        elif letter == 'r':
             message.append(letter_shift.get(17))
-        elif letter == "s":
+        elif letter == 's':
             message.append(letter_shift.get(18))
-        elif letter == "t":
+        elif letter == 't':
             message.append(letter_shift.get(19))
-        elif letter == "u":
+        elif letter == 'u':
             message.append(letter_shift.get(20))
-        elif letter == "v":
+        elif letter == 'v':
             message.append(letter_shift.get(21))
-        elif letter == "w":
+        elif letter == 'w':
             message.append(letter_shift.get(22))
-        elif letter == "x":
+        elif letter == 'x':
             message.append(letter_shift.get(23))
-        elif letter == "y":
+        elif letter == 'y':
             message.append(letter_shift.get(24))
-        elif letter == "z":
+        elif letter == 'z':
             message.append(letter_shift.get(25))
-        elif letter == " ":
-            message.append(" ")
+        elif letter == ' ':
+            message.append(' ')
     message_text = message_text.join(message)
     is_readable = True
     print("*\nCaesar Shift Encrypted\n*")
@@ -308,7 +309,6 @@ def tree():
         elif i == 'z':
             characters[characters.index(i)] = "||||"
     message = characters
-    print(message)
     print("*\nTree Code Encrypted\n*")
     is_readable = False
 
