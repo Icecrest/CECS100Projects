@@ -5,6 +5,8 @@ saleAmount = 0.0
 
 def getSale():
     global saleAmount
+    """
+    global saleAmount
     saleAmount += float(input("Input the amount purchased:\t"))
     """
     run = True
@@ -23,10 +25,9 @@ def getSale():
                 print("Total purchase amount (before tax):", saleAmount)
                 run = False
             elif check == "y":
-                run = True
-            elif not check == "y":
+                break
+            else:
                 print("Invalid input")
-    """
 
 
 def getTaxes(state, county):
