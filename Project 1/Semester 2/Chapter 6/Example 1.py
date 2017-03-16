@@ -5,8 +5,7 @@
     Add 101, 102, 103, 104, 105 to the list
     Print contents of the file again
 """
-
-global file = ''
+file = ''
 
 def ready_file():
     global file
@@ -20,7 +19,7 @@ def read_file(thisFile):
 
 def write_nums(thisFile, num1, num2, step):
     for num in range(num1, num2+1, step):  # Use a loop to add numbers, in intervals of 'step'      #2,#4
-    thisFile.write(str(num) + "\n")
+        thisFile.write(str(num) + "\n")
             
             
 def main():
