@@ -6,16 +6,14 @@
 def main():
     check = 1
     num_list = []
-    total = 0
-    run = True
     while not check == 0:
+        run = True
+        total = 0
         num_sequence = input("Enter a sequence of numbers without spaces:\t")   # Get input of a sequence
         try:
             print("You entered the sequence", num_sequence)
             for i in num_sequence:
                 num_list.append(int(i))                                         # Attempt conversion
-            print("You entered the sequence", num_sequence)
-            print(num_list)
         except ValueError:                                                      # Catch ValueError
             print("\n\n** Conversion raised a ValueError **\n\n")
         except TypeError:                                                       # Catch TypeError
