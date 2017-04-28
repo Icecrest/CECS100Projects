@@ -2,6 +2,7 @@
 Make a bank account using classes
 """
 
+
 class BankAccount:
 
     def __init__(self):
@@ -21,7 +22,6 @@ class BankAccount:
 
         print("Your balance is", newbal, "\n")
 
-
     def deposit(self):
         while 1 == 1:
             amt = input("Enter the amount you would like to deposit:\n~~\t")
@@ -36,7 +36,6 @@ class BankAccount:
                 else:
                     self.__balance += amt
                 break
-
 
     def withdraw(self):
         while 1 == 1:
@@ -54,21 +53,3 @@ class BankAccount:
                 else:
                     self.__balance -= amt
                 break
-
-
-def main():
-    acct = BankAccount()
-    check = 1
-    while check == 1:
-        print("1: Check Balance\n2: Deposit Funds\n3: Withdraw Funds\n\n0: Exit Program")
-        user = input("Enter the corresponding number to the action you would like to take\n~~\t")
-        if user == '1':
-            acct.check_bal()
-        elif user == '2':
-            acct.deposit()
-        elif user == '3':
-            acct.withdraw()
-        elif user == '0':
-            check = 0
-
-main()
