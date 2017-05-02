@@ -28,32 +28,28 @@ def main():
             while 1 == 1:
                 amt = input("Enter the amount you would like to deposit:\n~~\t")
                 case = amt.rpartition('.')
-                if len(case[2]) > 2 and not case[2]=="":
+                try:
+                    amt = float(amt)
+                except ValueError:
+                    print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
+                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
                     print("Invalid amount entered.  Please enter a new amount.")
                 else:
-                    try:
-                        amt = float(amt)
-                    except ValueError:
-                        print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
-                    else:
-                        balance += amt
+                    balance += amt
                     break
         elif user == '3':
                                                 # Begin Deposit function
             while 1 == 1:
                 amt = input("Enter the amount you would like to withdraw:\n~~\t")
                 case = amt.rpartition('.')
-                if len(case[2]) > 2 and not case[0] == '':
+                try:
+                    amt = float(amt)
+                except ValueError:
+                    print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
+                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
                     print("Invalid amount entered.  Please enter a new amount.")
-                elif float(amt) > balance:
-                    print("Invalid amount, cannot overdraft.\n")
                 else:
-                    try:
-                        amt = float(amt)
-                    except ValueError:
-                        print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
-                    else:
-                        balance -= amt
+                    balance -= amt
                     break
         elif user == '0':
             check = 0

@@ -25,34 +25,36 @@ class BankAccount:
     def deposit(self):
         while 1 == 1:
             amt = input("Enter the amount you would like to deposit:\n~~\t")
-            case = amt.rpartition('.')
-            if len(case[2]) > 2 and not case[2] == "":
-                print("Invalid amount entered.  Please enter a new amount.")
-            else:
+            if "." in amt:
+                case = amt.rpartition('.')
                 try:
                     amt = float(amt)
                 except ValueError:
                     print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
+                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
+                    print("Invalid amount entered.  Please enter a new amount.")
                 else:
                     self.__balance += amt
-                break
+                    break
+            else:
+                print("Invalid input, please try again.")
 
     def withdraw(self):
         while 1 == 1:
             amt = input("Enter the amount you would like to withdraw:\n~~\t")
-            case = amt.rpartition('.')
-            if len(case[2]) > 2 and not case[0] == '':
-                print("Invalid amount entered.  Please enter a new amount.")
-            elif float(amt) > self.__balance:
-                print("Invalid amount, cannot overdraft.\n")
-            else:
+            if "." in amt:
+                case = amt.rpartition('.')
                 try:
                     amt = float(amt)
                 except ValueError:
                     print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
+                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
+                    print("Invalid amount entered.  Please enter a new amount.")
                 else:
                     self.__balance -= amt
-                break
+                    break
+            else:
+                print("Invalid input, please try again.")
 
 
 def main():
@@ -73,3 +75,5 @@ def main():
             break
         else:
             print("Invalid input, please try again.\n")
+
+main()
