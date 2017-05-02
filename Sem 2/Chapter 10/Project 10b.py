@@ -53,3 +53,23 @@ class BankAccount:
                 else:
                     self.__balance -= amt
                 break
+
+
+def main():
+    balance = 500.0
+    account = BankAccount()
+
+    check = 1
+    while check == 1:
+        print("1: Check Balance\n2: Deposit Funds\n3: Withdraw Funds\n\n0: Exit Program")
+        user = input("Enter the corresponding number to the action you would like to take\n~~\t")
+        if user == '1':
+            account.check_bal()
+        elif user == '2':
+            account.deposit()
+        elif user == '3':
+            account.withdraw()
+        elif user == '0':
+            break
+        else:
+            print("Invalid input, please try again.\n")
