@@ -1,6 +1,7 @@
-"""
-Make a bank account using classes
-"""
+# Sean Curley
+# 015068363
+# Project 10b
+# May 1, 2017
 
 
 class BankAccount:
@@ -25,16 +26,21 @@ class BankAccount:
     def deposit(self):
         while 1 == 1:
             amt = input("Enter the amount you would like to deposit:\n~~\t")
-            if "." in amt:
+            if '.' in amt:
+                print("DEBUG found")
                 case = amt.rpartition('.')
+                print(case)
                 try:
                     amt = float(amt)
                 except ValueError:
                     print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
-                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
+
+                if case[2] == '' or amt <= 0 or amt > self.__balance:
+                    print("DEBUG error")
                     print("Invalid amount entered.  Please enter a new amount.")
                 else:
                     self.__balance += amt
+                    print("Amount Deposited\n")
                     break
             else:
                 print("Invalid input, please try again.")
@@ -48,10 +54,12 @@ class BankAccount:
                     amt = float(amt)
                 except ValueError:
                     print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
-                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
+
+                if case[2] == '' or amt <= 0 or amt > self.__balance:
                     print("Invalid amount entered.  Please enter a new amount.")
                 else:
                     self.__balance -= amt
+                    print("Amount Withdrawn\n")
                     break
             else:
                 print("Invalid input, please try again.")

@@ -1,6 +1,8 @@
-"""
-Create a Bank account class using anything but classes
-"""
+# Sean Curley
+# 015068363
+# Project 10a
+# May 1, 2017
+
 
 def main():
     balance = 500.0
@@ -32,10 +34,11 @@ def main():
                     amt = float(amt)
                 except ValueError:
                     print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
-                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
+                if case[2] == '' or amt <= 0 or amt > balance:
                     print("Invalid amount entered.  Please enter a new amount.")
                 else:
                     balance += amt
+                    print("Amount Deposited\n")
                     break
         elif user == '3':
                                                 # Begin Deposit function
@@ -46,10 +49,11 @@ def main():
                     amt = float(amt)
                 except ValueError:
                     print("~~ ValueError Raised ~~\nInvalid amount entered.  Please enter a new amount.")
-                if len(case[2]) == 2 or not case[0] == '' or amt >= 0 or float(amt) > self.__balance:
+                if case[2] == '' or amt <= 0 or amt > balance:
                     print("Invalid amount entered.  Please enter a new amount.")
                 else:
                     balance -= amt
+                    print("Amount Withdrawn\n")
                     break
         elif user == '0':
             check = 0
